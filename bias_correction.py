@@ -47,7 +47,7 @@ Available methods include:
 __version__ = "0.4"
 
 def quantile_correction(obs_data, mod_data, sce_data, modified=True):
-    cdf = ECDF(mod_data)
+    cdf = ECDF(mod_data, side ="left")
     p = cdf(sce_data) * 100
     cor = np.subtract(*[np.nanpercentile(x, p) for x in [obs_data, mod_data]])
     if modified:
